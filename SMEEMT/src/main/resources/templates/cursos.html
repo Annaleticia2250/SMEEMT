@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Curso</title>
+</head>
+<body>
+
+<h1>Cadastro de Curso</h1>
+
+<form th:action="@{/cursos/salvar}" method="post" th:object="${curso}">
+    <label>Nome do Curso:</label>
+    <input type="text" th:field="*{nome}" required><br>
+
+    <label>Descrição:</label>
+    <input type="text" th:field="*{descricao}" required><br>
+
+    <label>Carga Horária:</label>
+    <input type="number" th:field="*{cargaHoraria}" required><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+<hr>
+
+<h2>Cursos Cadastrados</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Carga Horária</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="c : ${cursos}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.nome}"></td>
+            <td th:text="${c.descricao}"></td>
+            <td th:text="${c.cargaHoraria}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="/">Voltar</a>
+</body>
+</html>
