@@ -1,52 +1,77 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Curso</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head th:replace="fragments/head :: head"></head>
 <body>
 
-<h1>Cadastro de Curso</h1>
+<!-- menu -->
+<div th:replace="fragments/menu :: menu"></div>
+<div th:replace="fragments/alerts :: alerts"></div>
 
-<form th:action="@{/cursos/salvar}" method="post" th:object="${curso}">
-    <label>Nome:</label>
-    <input type="text" th:field="*{nome}" required><br>
+<main class="container my-5">
+    <div class="row g-4">
+        <!-- Formulário -->
+        <div class="col-12 col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Cadastro de Curso</h2>
 
-    <label>Descrição:</label>
-    <input type="text" th:field="*{descricao}" required><br>
+                    <form th:action="@{/cursos/salvar}" method="post" th:object="${curso}">
+                        <div class="mb-3">
+                            <label class="form-label">Nome do Curso</label>
+                            <input type="text" class="form-control" th:field="*{nome}" required>
+                        </div>
 
-    <label>Curso:</label>
-    <input type="text" th:field="*{curso}" required><br>
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <input type="text" class="form-control" th:field="*{descricao}" required>
+                        </div>
 
-    <label>Carga Horária:</label>
-    <input type="number" th:field="*{cargaHoraria}" required><br><br>
+                        <div class="mb-3">
+                            <label class="form-label">Carga Horária (horas)</label>
+                            <input type="number" class="form-control" th:field="*{cargaHoraria}" required>
+                        </div>
 
-    <button type="submit">Salvar</button>
-</form>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-<hr>
+        <!-- Lista -->
+        <div class="col-12 col-md-7">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Cursos Cadastrados</h2>
 
-<h2>Cursos Cadastrados</h2>
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Curso</th>
-            <th>Descrição</th>
-            <th>Carga Horária</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="c : ${cursos}">
-            <td th:text="${c.id}"></td>
-            <td th:text="${c.nome}"></td>
-            <td th:text="${c.curso}"></td>
-            <td th:text="${c.descricao}"></td>
-            <td th:text="${c.cargaHoraria}"></td>
-        </tr>
-    </tbody>
-</table>
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Carga Horária</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="c : ${cursos}">
+                                    <td th:text="${c.id}"></td>
+                                    <td th:text="${c.nome}"></td>
+                                    <td th:text="${c.descricao}"></td>
+                                    <td th:text="${c.cargaHoraria}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <a th:href="@{/}" class="btn btn-secondary mt-3">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
 </body>
 </html>

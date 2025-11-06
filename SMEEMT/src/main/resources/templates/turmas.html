@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head th:replace="fragments/head :: head"></head>
+<body>
+
+<div th:replace="fragments/menu :: menu"></div>
+<div th:replace="fragments/alerts :: alerts"></div>
+
+
+<main class="container my-5">
+    <div class="row g-4">
+        <!-- Form -->
+        <div class="col-12 col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="h5 mb-3">Cadastro de Turma</h3>
+
+                    <form th:action="@{/turmas/salvar}" method="post" th:object="${turma}">
+                        <div class="mb-3">
+                            <label class="form-label">Componente</label>
+                            <select class="form-select" name="componente" required>
+                                <option value="">Selecione um componente</option>
+                                <option th:each="comp : ${componentes}" th:value="${comp.id}" th:text="${comp.nome}"></option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ano/Semestre (ex: 2025.1)</label>
+                            <input class="form-control" type="text" th:field="*{anoSemestre}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Turno</label>
+                            <input class="form-control" type="text" th:field="*{turno}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Capacidade</label>
+                            <input class="form-control" type="number" th:field="*{capacidade}" required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary" type="submit">Salvar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista -->
+        <div class="col-12 col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="h5 mb-3">Turmas Cadastradas</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Componente</th>
+                                <th>Ano/Sem</th>
+                                <th>Turno</th>
+                                <th>Capacidade</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="t : ${turmas}">
+                                <td th:text="${t.id}"></td>
+                                <td th:text="${t.componente != null ? t.componente.nome : '—'}"></td>
+                                <td th:text="${t.anoSemestre}"></td>
+                                <td th:text="${t.turno}"></td>
+                                <td th:text="${t.capacidade}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

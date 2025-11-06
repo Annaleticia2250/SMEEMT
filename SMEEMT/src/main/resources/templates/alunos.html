@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Alunos</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head th:replace="fragments/head :: head"></head>
 <body>
-<h1>Lista de Alunos</h1>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Email</th>
-        <th>Telefone</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="aluno : ${alunos}">
-        <td th:text="${aluno.id}"></td>
-        <td th:text="${aluno.nome}"></td>
-        <td th:text="${aluno.cpf}"></td>
-        <td th:text="${aluno.email}"></td>
-        <td th:text="${aluno.telefone}"></td>
-    </tr>
-    </tbody>
-</table>
+<!-- menu -->
+<div th:replace="fragments/menu :: menu"></div>
 
-<a href="/">Voltar</a>
+<main class="container my-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="card-title mb-4">Lista de Alunos</h1>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="aluno : ${alunos}">
+                        <td th:text="${aluno.id}"></td>
+                        <td th:text="${aluno.nome}"></td>
+                        <td th:text="${aluno.cpf}"></td>
+                        <td th:text="${aluno.email}"></td>
+                        <td th:text="${aluno.telefone}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a class="btn btn-secondary mt-3" th:href="@{/}">Voltar</a>
+        </div>
+    </div>
+</main>
+
 </body>
 </html>

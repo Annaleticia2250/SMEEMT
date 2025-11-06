@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+	<!-- templates/fragments/menu.html -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" th:fragment="menu">
+	  <div class="container-fluid">
+	    <a class="navbar-brand fw-bold" th:href="@{/}">🎓 BEM-VINDO! </a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+
+	    <div class="collapse navbar-collapse" id="navbarNav">
+	      <ul class="navbar-nav ms-auto">
+	        <li class="nav-item"><a class="nav-link" th:href="@{/}">🏠 Início</a></li>
+	        <li class="nav-item"><a class="nav-link" th:href="@{/alunos}">👩‍🎓 Alunos</a></li>
+	        <li class="nav-item"><a class="nav-link" th:href="@{/cursos}">📘 Cursos</a></li>
+	        <li class="nav-item"><a class="nav-link" th:href="@{/componentes}">🧩 Componentes</a></li>
+	        <li class="nav-item"><a class="nav-link" th:href="@{/turmas}">🏫 Turmas</a></li>
+	        <li class="nav-item"><a class="nav-link" th:href="@{/matriculas}">📝 Matrículas</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+</div>
+</body>
+</html>
